@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   images: {
     // Wikimedia Commons rate-limit:ar Next.js bildproxy. Med unoptimized
     // skickas bilden direkt från ursprungs-CDN till browsern och slipper
