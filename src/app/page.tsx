@@ -1,65 +1,100 @@
 import Image from "next/image";
+import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import { heroImage } from "@/lib/images";
+
+const featurePages = [
+  {
+    href: "/fiskeutrustning",
+    emoji: "🎣",
+    title: "Fiskeutrustning",
+    text: "Spö, rullar, drag, krokar — vad du behöver för att komma igång.",
+  },
+  {
+    href: "/fiskemetoder",
+    emoji: "🪶",
+    title: "Fiskemetoder",
+    text: "Flugfiske, spinn, mete, pimpel och trolling — så funkar de.",
+  },
+  {
+    href: "/fiskarter",
+    emoji: "🐟",
+    title: "Fiskarter",
+    text: "Hur du känner igen fiskarna och vilka knep som funkar bäst.",
+  },
+  {
+    href: "/fiskevatten",
+    emoji: "🏞️",
+    title: "Fiskevatten",
+    text: "Sveriges bästa sjöar och åar — och vad de är kända för.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <section className="relative">
+        <div className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
+          <Image
+            src={heroImage}
+            alt="Person som metar vid vattnet"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+          <div className="absolute inset-0 flex items-end">
+            <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 pb-10 sm:pb-16 text-white">
+              <p className="text-sm font-medium uppercase tracking-wider text-primary-foreground/90">
+                Fiskehörnan
+              </p>
+              <h1 className="mt-2 max-w-3xl text-4xl sm:text-6xl font-bold tracking-tight">
+                Allt om fiske — från krok till fångst.
+              </h1>
+              <p className="mt-4 max-w-2xl text-base sm:text-lg text-white/85">
+                En guide för dig som är ny på fiske eller bara vill lära dig
+                mer. Vi går igenom utrustning, metoder, fiskarter och de
+                bästa fiskevattnen i Sverige.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
+        <div className="max-w-2xl">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+            Varför finns sidan?
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground">
+            Vi tycker att fiske är ett av det roligaste som finns — det är
+            spännande, lugnt och du är ute i naturen. Sidan är gjord för att
+            samla det vi själva har lärt oss, så att fler kan komma ut och
+            prova. Här får du grunderna förklarade enkelt, utan svåra ord.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {featurePages.map((page) => (
+            <Link key={page.href} href={page.href} className="group">
+              <Card className="h-full transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-md">
+                <CardContent className="p-6">
+                  <div className="text-3xl" aria-hidden>
+                    {page.emoji}
+                  </div>
+                  <h3 className="mt-3 text-lg font-semibold tracking-tight group-hover:text-primary">
+                    {page.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {page.text}
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
